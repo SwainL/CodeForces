@@ -33,7 +33,7 @@ long long helper(int *arr, const int lo, const int hi) {
 	int idx = lo, p1 = lo, p2 = mid + 1;
 	while (p1 <= mid && p2 <= hi) {
 		if (arr[p1] < arr[p2]) {
-			res += arr[p1] * (hi - p2 + 1);
+			res += (long long)arr[p1] * (hi - p2 + 1);
 			temp[idx++] = arr[p1++];	
 		}
 		else {
