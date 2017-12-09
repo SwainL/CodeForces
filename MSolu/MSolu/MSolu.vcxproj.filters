@@ -23,5 +23,8 @@
     <ClInclude Include="DCEPC206.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="BITree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
