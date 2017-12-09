@@ -1,8 +1,11 @@
 #include <iostream>
+#include "DCEPC206.h"
 
 using namespace std;
 
 int main() {
-	cout << "hello wrold" << endl;
+	dcepec206();
+	getchar();
+	getchar();
 	return 0;
 }
