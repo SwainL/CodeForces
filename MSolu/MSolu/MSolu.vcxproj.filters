@@ -26,5 +26,8 @@
     <ClInclude Include="BITree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DCEPC206_FenwickTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

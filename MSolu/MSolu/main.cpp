@@ -1,10 +1,11 @@
 #include <iostream>
-#include "DCEPC206.h"
+#include "DCEPC206_FenwickTree.h"
 
 using namespace std;
 
 int main() {
-	dcepec206();
+	dcepc206_FenwickTree();
+	
 	getchar();
 	getchar();
 	return 0;

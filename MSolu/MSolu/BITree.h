@@ -1,5 +1,6 @@
 #pragma once
 #pragma once
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -39,4 +40,18 @@ public:
 		return prefix_query(end) - prefix_query(start - 1);
 	}
 
+	void print_buildin_tree() {
+		for (auto num : tree) {
+			cout << num << " ";
+		}
+		cout << endl;
+	}
+
 };
+
+
+void test() {
+	BITree bitree({ 1,5,3,6,4 });
+	bitree.print_buildin_tree();
+
+}
