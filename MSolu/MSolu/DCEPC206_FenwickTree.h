@@ -7,6 +7,7 @@
 
 #include <algorithm>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 template <typename T>
@@ -14,7 +15,7 @@ class BITree {
 private:
 	vector<T> tree;
 	int max_size;
-	vector<T> &arr;
+	vector<T> arr;
 	vector<T> ordered_arr;
 
 	void convert() {      // time complexity O(nlgn), space complexity O(n)
@@ -32,12 +33,7 @@ private:
 	}
 public:
 	// constructor
-	BITree(vector<T> &arr) : arr(arr), max_size(arr.size() + 1) {
-		// initialize private arrays
-		for (int i = 0; i < max_size; ++i) {
-			ordered_arr.push_back(0);
-			tree.push_back(0);
-		}
+	BITree(vector<T> &arr) : arr(arr), max_size(arr.size() + 1), tree(arr.size() + 1, 0), ordered_arr(arr.size(), 0) {
 		// compression
 		convert();
 	}
@@ -52,8 +48,14 @@ public:
 		return sum;
 	}
 
+	// range-query
+	long long query_range_sum(int from, int to) {
+		if (from >= to) return 0;
+		return query_sum(to) - query_sum(from);
+	}
+
 	// update
-	void update(int idx, int add = 1) {
+	void update(int idx, int add = -1) {
 		if (idx <= 0) return;
 		while (idx < max_size) {
 			tree[idx] += add;
@@ -72,11 +74,18 @@ public:
 	// solve a specific problem (i.e. DCEPC_206)
 	long long solve() {
 		long long res = 0;
-		for (int i = max_size - 1; i >= 0; --i) {  // Attention : travese in reverse order
-			update(ordered_arr[i]);
+		for (int i = 0; i < ordered_arr.size(); ++i) {
+			++tree[ordered_arr[i]];
 		}
-		for (int i = 0; i < max_size; ++i) {
-			res += arr[ordered_arr[i]] * query_sum(ordered_arr[i]);
+
+		for (int idx = 1; idx < max_size; ++idx) {
+			int idx2 = idx + (idx & -idx);
+			if (idx2 < max_size) tree[idx2] += tree[idx];
+		}
+
+		for (int i = 1; i < max_size; ++i) {
+			res += arr[i - 1] * query_range_sum(ordered_arr[i - 1], max_size - 1);
+			update(ordered_arr[i - 1]);
 		}
 		return res;
 	}
@@ -88,14 +97,13 @@ void dcepc206_FenwickTree() {
 	for (int i = 0; i < t; ++i) {
 		int n;
 		cin >> n;
-		vector<int> arr(n);
+		vector<int> arr;
 		for (int j = 0; j < n; ++j) {
 			int num;
 			cin >> num;
-			arr[j] = num;
+			arr.push_back(num);
 		}
 		BITree<int> bitree(arr);
 		cout << bitree.solve() << endl;
-		bitree.print_builtin_tree();
 	}
 }
