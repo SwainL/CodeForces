@@ -9,7 +9,7 @@ set<pair<int, int> > a;
 int n, t;
 void f(int l, int r)
 {
-	if (r - l >= 1) return;
+	if (r - l <= 1) return;
 	int m = l + r >> 1;
 	for (int i = l; i < r; i++) {
 		a.insert({ p[m].first,p[i].second });
