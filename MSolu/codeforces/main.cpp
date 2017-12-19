@@ -1,7 +1,7 @@
-#include "Superset.h"
+#include "superset.h"
+
 int main() {
 	test();
-	
 	getchar();
 	getchar();
 	return 0;
