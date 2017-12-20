@@ -22,7 +22,8 @@ int test()
 {
 	cin >> n;
 	for (int i = 0; i < n; i++) {
-		cin >> p[i].first >> p[i].second, a.insert(p[i]);
+		cin >> p[i].first >> p[i].second;
+		a.insert(p[i]);
 	}
 	sort(p, p + n);
 	f(0, n);

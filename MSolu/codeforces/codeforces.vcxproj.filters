@@ -23,5 +23,8 @@
     <ClInclude Include="superset.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="vanya_and_lanterns.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
